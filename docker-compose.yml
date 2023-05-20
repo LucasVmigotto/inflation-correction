@@ -23,7 +23,7 @@ services:
         build:
             context: .
         working_dir: /app
-        command: dotnet app.csproj
+        command: dotnet watch run urls=http://$IC_APP_HOST:$IC_APP_PORT
         tty: true
         env_file: .env
         ports:
