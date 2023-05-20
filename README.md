@@ -20,6 +20,14 @@
 
     >  Customize the values as needed
 
+3. Run the followng command:
+
+    > Check this [link](https://aka.ms/dev-certs-trust) to understand why this is necessary
+
+    ```bash
+    dotnet dev-certs https --trust
+    ```
+
 ## Development
 
 1. **ic-app**
