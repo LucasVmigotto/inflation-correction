@@ -3,17 +3,20 @@ version: '3'
 services:
 
     ic-sql-server:
-        image: mcr.microsoft.com/azure-sql-edge:1.0.4
+        image: mcr.microsoft.com/mssql/server:2022-latest
         container_name: ic-sql-server
         hostname: ic-sql-server
         restart: always
+        working_dir: /app
         environment:
             ACCEPT_EULA: 'Y'
             MSSQL_SA_PASSWORD: $IC_SQL_PSWD
+            MSSQL_PID: $IC_SQL_PID
         ports:
         - $IC_SQL_PORT:$IC_SQL_PORT
         volumes:
         - ic-sql-server-data:/data
+        - ./database:/confs:delegated
         networks:
         - ic-network
 
