@@ -20,12 +20,31 @@
 
     >  Customize the values as needed
 
-3. Run the followng command:
+3. Configure HTTP certs in `ic-app` container:
 
     > Check this [link](https://aka.ms/dev-certs-trust) to understand why this is necessary
 
+    3.1. Use the `ic-app` CLI service:
+
+    ```bash
+    docker compose run --rm --service-ports ic-app bash
+    ```
+
+    3.2. Execute the following command:
+
     ```bash
     dotnet dev-certs https --trust
+    ```
+
+4. Create database structure and populate with values:
+
+    ```bash
+    docker compose exec \
+        -it ic-sql-server \
+        /opt/mssql-tools/bin/sqlcmd \
+        -U sa \
+        -P '<your password value defined to $IC_SQL_PSWD in .env>' \
+        -i '/confs/1-structure.sql'
     ```
 
 ## Development
